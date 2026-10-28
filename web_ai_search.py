@@ -1,3 +1,5 @@
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
 import streamlit as st
 import requests
 from openai import OpenAI
