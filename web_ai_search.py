@@ -91,15 +91,3 @@ if prompt := st.chat_input("问点今天发生的新鲜事吧！"):
         st.markdown(reply)
         
     st.session_state.messages.append({"role": "assistant", "content": reply})
-import akshare as ak
-
-def get_stock_index():
-    try:
-        # 抓取上证指数当天的实时数据
-        df = ak.stock_zh_index_spot_em(symbol="上证系列指数")
-        # 找到上证指数那一行
-        sh_index = df[df['名称'] == '上证指数'].iloc[0]
-        # 提取最新价和涨跌幅
-        return f"上证指数当前点位：{sh_index['最新价']}，涨跌幅：{sh_index['涨跌幅']}%"
-    except Exception as e:
-        return f"获取行情失败：{e}"
