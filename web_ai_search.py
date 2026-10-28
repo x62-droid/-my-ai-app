@@ -1,3 +1,18 @@
+import locale
+import os
+
+# 强制设置 UTF-8 locale，避免云端默认的 C/ascii 编码
+for _loc in ("C.UTF-8", "en_US.UTF-8", "C.utf8"):
+    try:
+        locale.setlocale(locale.LC_ALL, _loc)
+        break
+    except locale.Error:
+        continue
+
+# 强制标准输出/错误流使用 UTF-8
+import sys
+sys.stdout.reconfigure(encoding='utf-8')
+sys.stderr.reconfigure(encoding='utf-8')
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 import streamlit as st
